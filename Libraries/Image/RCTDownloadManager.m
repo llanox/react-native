@@ -48,6 +48,36 @@
    }
 
 
+RCT_EXPORT_METHOD(downloadImageWithUrl:(NSURL *)url ){
+  
+  
+  _imageDownloader = [RCTImageDownloader sharedInstance];
+  
+  [_imageDownloader downloadDataForURL:url block:^(NSData *data, NSError *error) {
+    
+    if (error) {
+      RCTLogWarn(@"Unable to download image data. Error: %@", error);
+     
+      return;
+    }
+    
+    if (data) {
+      RCTLogWarn(@"Downloaded image data. Data: %@", data);
+      return;
+    }
+    
+    
+  }];
+  
+  
+  
+  
+  
+}
+
+
+
+
   RCT_EXPORT_METHOD(listDownloadedData:(RCTResponseSenderBlock)callback){
   
    NSMutableArray *serializedContacts = [NSMutableArray new];
